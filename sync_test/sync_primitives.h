@@ -91,7 +91,7 @@ public:
 
 // 6. Барьер
 class BarrierWrapper {
-    unique_ptr<std::barrier<>> barrier;  // Используем умный указатель
+    unique_ptr<std::barrier<>> barrier;
     int phases;
     int count;
 public:
@@ -105,7 +105,7 @@ public:
           count(count) {}
     
     void lock() {
-        if (!barrier) return;  // На всякий случай проверяем
+        if (!barrier) return;
         
         for (int i = 0; i < phases; ++i) {
             barrier->arrive_and_wait();
