@@ -65,7 +65,6 @@ class RaceRunner {
         threadTimes[threadId] = duration.count();
     }
     
-    // Вспомогательная функция для запуска одного теста
     TimingResult runSingle() {
         threadTimes.clear();
         threadTimes.resize(config.threadCount);
@@ -104,7 +103,6 @@ public:
     RaceRunner(RaceConfig cfg, const SyncParams& params = SyncParams()) 
         : config(cfg), primitive(params), threadTimes(cfg.threadCount) {}
     
-    // Новая функция с прогревом и статистикой
     ExtendedTimingResult runWithStats(int warmupRuns = 3, int measurementRuns = 10) {
         vector<long long> measurements;
         measurements.reserve(measurementRuns);
@@ -162,7 +160,6 @@ public:
         return extendedResult;
     }
     
-    // Старая функция для обратной совместимости
     TimingResult run() {
         auto result = runSingle();
         result.primitiveName = ""; // Заполнится позже
